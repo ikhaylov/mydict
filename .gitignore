@@ -1,0 +1,4 @@
+# folder idea project
+.idea/
+# files txt won't be added to git-repository
+modules/*.txt
