@@ -1,7 +1,7 @@
 import wx
 import sqlite3
 from modules import func_bd
-# my test co
+
 
 
 class AddWordsPanel2(wx.Panel):
