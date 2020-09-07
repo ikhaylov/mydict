@@ -11,17 +11,20 @@ class AddWordsPanel2(wx.Panel):
         bSizer1 = wx.BoxSizer(wx.HORIZONTAL)
 
 
-        self.rus_engStaticText = wx.StaticText(self, wx.ID_ANY, "Введите слово на русском")
+        self.rus_engStaticText = wx.StaticText(self, wx.ID_ANY, "Введите слово на английском")
         self.rus_engStaticText.Wrap(-1)
         bSizer1.Add(self.rus_engStaticText, 0, wx.ALIGN_CENTER | wx.LEFT, 15)
 
-        self.rusTextCtrl = wx.TextCtrl(self, wx.ID_ANY, size=(200, -1))
-        bSizer1.Add(self.rusTextCtrl, 1, wx.ALIGN_CENTER | wx.ALL, 15)
-        self.rusTextCtrl.Show()
-
         self.engTextCtrl = wx.TextCtrl(self, wx.ID_ANY, size=(200, -1))
         bSizer1.Add(self.engTextCtrl, 1, wx.ALIGN_CENTER | wx.ALL, 15)
-        self.engTextCtrl.Hide()
+        self.engTextCtrl.Show()
+
+        self.rusTextCtrl = wx.TextCtrl(self, wx.ID_ANY, size=(200, -1))
+        bSizer1.Add(self.rusTextCtrl, 1, wx.ALIGN_CENTER | wx.ALL, 15)
+        self.rusTextCtrl.Hide()
+        # self.rusTextCtrl.Show()
+
+
 
         bSizer2.Add(bSizer1, 1, wx.EXPAND, 5)
 
@@ -34,19 +37,38 @@ class AddWordsPanel2(wx.Panel):
         self.Hide()
         self.Layout()
 
+        self.engTextCtrl.Bind(wx.EVT_KEY_UP, self.onKeyUpEng)
+        self.rusTextCtrl.Bind(wx.EVT_KEY_UP, self.onKeyUpRus)
 
 
 
+    def onKeyUpEng(self, event):
+        key = event.GetKeyCode()
+        if key == wx.WXK_RETURN or key == wx.WXK_NUMPAD_ENTER:
+            if self.engTextCtrl.GetValue() != "":
+                self.engWord = self.engTextCtrl.GetValue().lower()
+                self.rus_engStaticText.SetLabel("Введите слово на русском")
+                self.engTextCtrl.Hide()
+                self.rusTextCtrl.Show()
+                self.rusTextCtrl.SetFocus()
+                print(self.engWord)
 
-        self.rusTextCtrl.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+
+    def onKeyUpRus(self, event):
+        key = event.GetKeyCode()
+        if key == wx.WXK_RETURN or key == wx.WXK_NUMPAD_ENTER:
+            if self.rusTextCtrl.GetValue() != "":
+                self.rusWord = self.rusTextCtrl.GetValue().lower()
+                self.rus_engStaticText.SetLabel("Введите слово на английском")
+                self.rusTextCtrl.Hide()
+                self.engTextCtrl.Show()
+                self.engTextCtrl.SetFocus()
+                print(self.engWord, self.rusWord)
+                self.engTextCtrl.SetValue("")
+                self.rusTextCtrl.SetValue("")
 
 
 
-
-    def onKeyUp(self, event):
-        if True:
-            pass
-        print("Hello")
 
 
         # rus_engString = ""
