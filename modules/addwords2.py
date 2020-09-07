@@ -1,7 +1,6 @@
 import wx
 import sqlite3
 from modules import func_bd
-# I've do something
 
 
 class AddWordsPanel2(wx.Panel):
@@ -32,30 +31,23 @@ class AddWordsPanel2(wx.Panel):
         bSizer2.Add(self.textLikeStatusBar, 0, wx.ALIGN_CENTER_HORIZONTAL | wx.ALL, 30)
 
         self.SetSizer(bSizer2)
-
-
-
-
-
-
-
-
-
-
-
-
         self.Hide()
         self.Layout()
 
 
 
-        self.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+
+
+        self.rusTextCtrl.Bind(wx.EVT_KEY_UP, self.onKeyUp)
 
 
 
 
     def onKeyUp(self, event):
+        if True:
+            pass
         print("Hello")
+
 
         # rus_engString = ""
         #
