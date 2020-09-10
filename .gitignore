@@ -2,3 +2,7 @@
 .idea/
 # files txt won't be added to git-repository
 modules/__pycache__/
+__pycache__/
+build/
+dist/
+Main.spec

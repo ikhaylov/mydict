@@ -20,9 +20,10 @@ class AddWordsPanel2(wx.Panel):
         self.engTextCtrl.Show()
 
         self.rusTextCtrl = wx.TextCtrl(self, wx.ID_ANY, size=(200, -1))
-        bSizer1.Add(self.rusTextCtrl, 1, wx.ALIGN_CENTER | wx.ALL, 15)
+        bSizer1.Add(self.rusTextCtrl, 2, wx.ALIGN_CENTER | wx.ALL, 15)
+        self.rusTextCtrl.Show()
         self.rusTextCtrl.Hide()
-        # self.rusTextCtrl.Show()
+
 
 
 
@@ -51,7 +52,25 @@ class AddWordsPanel2(wx.Panel):
                 self.engTextCtrl.Hide()
                 self.rusTextCtrl.Show()
                 self.rusTextCtrl.SetFocus()
-                print(self.engWord)
+                # --------------------------
+                si = self.GetSize()
+                siz = si[0] + 1, si[1] + 1
+                self.SetSize(siz)
+                self.SetSize(si)
+
+
+
+                # si = self.GetSize()
+                # print(si)
+                # print(si[0], si[1])
+                # siz = si[0] + 1, si[1] + 1
+                # print("passw", siz)
+                # self.SetSize(siz)
+                # self.SetSize(si)
+
+
+                # self.SetSize((534, 229))
+                # print(self.engWord)
 
 
     def onKeyUpRus(self, event):
@@ -66,6 +85,15 @@ class AddWordsPanel2(wx.Panel):
                 print(self.engWord, self.rusWord)
                 self.engTextCtrl.SetValue("")
                 self.rusTextCtrl.SetValue("")
+                #-------------------
+                si = self.GetSize()
+                siz = si[0] + 1, si[1] + 1
+                self.SetSize(siz)
+                self.SetSize(si)
+
+
+                # print(self.GetSize())
+                # self.SetSize((534, 228))
 
 
 

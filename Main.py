@@ -61,7 +61,7 @@ class MyFrame(wx.Frame):
 
         main_menu_item = mainmenu.Append(wx.ID_ANY, "Главная")
         add_word_menu_item = mainmenu.Append(wx.ID_ANY, "Добавить слово")
-        add_word_menu_item2 = mainmenu.Append(wx.ID_ANY, "Добавить слово 2")
+        add_word_menu_item2 = mainmenu.Append(wx.ID_ANY, "Добавить слово 2(тест)")
         verify_words_menu_item = mainmenu.Append(wx.ID_ANY, "Проверка слов")
 
         self.Bind(wx.EVT_MENU, self.onMainMenu, main_menu_item)
