@@ -1,11 +1,16 @@
 import wx
 import sqlite3
 from modules import func_bd
+# from ... import Main.__init__
 
 
 class AddWordsPanel(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
+
+        self.sb = "Режим добавления слов"
+
+        # self.sb = self.CreateStatusBar()
 
         gbSizer = wx.GridBagSizer(3, 2)
         self.engStaticText = wx.StaticText(self, wx.ID_ANY, "English: ")
@@ -35,13 +40,13 @@ class AddWordsPanel(wx.Panel):
         key = event.GetKeyCode()
         if key == wx.WXK_RETURN or key == wx.WXK_NUMPAD_ENTER:
             self.rusCtrl.SetFocus()
-            print("Вы выполняете переход к новой строке")
+            # print("Вы выполняете переход к новой строке")
 
     def onKeyUpRus(self, event):
         key = event.GetKeyCode()
         if key == wx.WXK_RETURN or key == wx.WXK_NUMPAD_ENTER:
             self.onWriteWords(wx.EVT_BUTTON)
-            print("Вы выполняете функцию добавления слова")
+            # print("Вы выполняете функцию добавления слова")
 
 
 
@@ -55,13 +60,16 @@ class AddWordsPanel(wx.Panel):
         rus_word = self.rusCtrl.GetValue().lower()
 
         if eng_word == "":
-            print("Вы пытаетесь записать пустое слово")
+            self.sb = "Вы пытаетесь записать пустое слово"
+            # print("Вы пытаетесь записать пустое слово")
             self.engCtrl.SetFocus()
         elif rus_word == "":
-            print("Вы пытаетесь записать пустое слово")
+            self.sb = "Вы пытаетесь записать пустое слово"
+            # print("Вы пытаетесь записать пустое слово")
             self.rusCtrl.SetFocus()
         else:
-            print(eng_word, " - ", rus_word, "успешно записаны в базу данных")
+            self.sb = "слова", eng_word, " и ", rus_word, "успешно записаны в базу данных"
+            # print(eng_word, " - ", rus_word, "успешно записаны в базу данных")
             func_bd.add_new_word(eng_word, rus_word)
             self.rusCtrl.SetValue("")
             self.engCtrl.SetValue("")

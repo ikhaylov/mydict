@@ -13,7 +13,7 @@ class MyFrame(wx.Frame):
         wx.Frame.__init__(self, parent=None, title="Это тестовая версия словаря", size=(550, 310))
         # self.m_statusBar1 = self.CreateStatusBar(1, wx.ST_SIZEGRIP, wx.ID_ANY)
 
-
+        # Create
         self.sb = self.CreateStatusBar()
         self.sb.SetStatusText("Статусная строка запущена")
 

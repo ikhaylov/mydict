@@ -16,6 +16,22 @@ def add_new_word(eng_word, rus_word):
         cursor.execute("INSERT INTO words (eng, rus) VALUES (?,?)", words)
 
 
+        # asd = cursor.execute('''SELECT eng FROM words WHERE eng=?''', str(eng_word))
+        # print(asd)
+        # exists = cursor.fetchall()
+        #
+        #
+        # if not exists:
+        #     cursor.execute("INSERT INTO words (eng, rus) VALUES (?,?)", words)
+        #     conn.commit()
+        #     Successful = "Successful"
+        #     return Successful
+        # else:
+        #     print("Error: words already exist")
+        #     Unsuccessful = "unsuccessful"
+        #     return Unsuccessful
+
+
 def rand_word():
     with sqlite3.connect("file.db") as conn:
         cursor = conn.cursor()
