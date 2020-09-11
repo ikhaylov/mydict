@@ -12,7 +12,7 @@ class AddWordsPanel2(wx.Panel):
 
 
         self.rus_engStaticText = wx.StaticText(self, wx.ID_ANY, "Введите слово на английском")
-        self.rus_engStaticText.Wrap(-1)
+        # self.rus_engStaticText.Wrap(300)
         bSizer1.Add(self.rus_engStaticText, 0, wx.ALIGN_CENTER | wx.LEFT, 15)
 
         self.engTextCtrl = wx.TextCtrl(self, wx.ID_ANY, size=(200, -1))
@@ -48,7 +48,7 @@ class AddWordsPanel2(wx.Panel):
         if key == wx.WXK_RETURN or key == wx.WXK_NUMPAD_ENTER:
             if self.engTextCtrl.GetValue() != "":
                 self.engWord = self.engTextCtrl.GetValue().lower()
-                self.rus_engStaticText.SetLabel("Введите слово на русском")
+                self.rus_engStaticText.SetLabel("Введите слово на русском       ")
                 self.engTextCtrl.Hide()
                 self.rusTextCtrl.Show()
                 self.rusTextCtrl.SetFocus()
