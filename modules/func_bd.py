@@ -6,7 +6,7 @@ import sqlite3
 with sqlite3.connect("file.db") as conn:
     cursor = conn.cursor()
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS words (eng TEXT NOT NULL DEFAULT 0, rus TEXT NOT NULL DEFAULT 0)""")
+    cursor.execute("""CREATE TABLE IF NOT EXISTS words (eng TEXT UNIQUE NOT NULL DEFAULT 0, rus TEXT NOT NULL DEFAULT 0)""")
 
 
 def add_new_word(eng_word, rus_word):

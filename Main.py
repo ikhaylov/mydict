@@ -4,21 +4,13 @@ from modules.verifywords import VerifyWordsPanel
 from modules.addwords2 import AddWordsPanel2
 
 
-# ID_ADD_WORD = 1
-# ID_VERIFY_WORD = 2
-
-
 class MyFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, parent=None, title="Это тестовая версия словаря", size=(550, 310))
         # self.m_statusBar1 = self.CreateStatusBar(1, wx.ST_SIZEGRIP, wx.ID_ANY)
 
-        # Create
         self.sb = self.CreateStatusBar()
         self.sb.SetStatusText("Статусная строка запущена")
-
-
-        # self.statusbar = wx.StatusBar()
 
         self.add_words_panel = AddWordsPanel(self)
         self.add_words_panel2 = AddWordsPanel2(self)

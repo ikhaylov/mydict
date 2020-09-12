@@ -1,16 +1,12 @@
 import wx
 import sqlite3
 from modules import func_bd
-# from ... import Main.__init__
+
 
 
 class AddWordsPanel(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-
-        self.sb = "Режим добавления слов"
-
-        # self.sb = self.CreateStatusBar()
 
         gbSizer = wx.GridBagSizer(3, 2)
         self.engStaticText = wx.StaticText(self, wx.ID_ANY, "English: ")
@@ -68,12 +64,20 @@ class AddWordsPanel(wx.Panel):
             # print("Вы пытаетесь записать пустое слово")
             self.rusCtrl.SetFocus()
         else:
-            self.sb = "слова", eng_word, " и ", rus_word, "успешно записаны в базу данных"
-            # print(eng_word, " - ", rus_word, "успешно записаны в базу данных")
-            func_bd.add_new_word(eng_word, rus_word)
-            self.rusCtrl.SetValue("")
-            self.engCtrl.SetValue("")
-            self.engCtrl.SetFocus()
+            try:
+                self.sb = "слова", eng_word, " и ", rus_word, "успешно записаны в базу данных"
+                # print(eng_word, " - ", rus_word, "успешно записаны в базу данных")
+                func_bd.add_new_word(eng_word, rus_word)
+                self.rusCtrl.SetValue("")
+                self.engCtrl.SetValue("")
+                self.engCtrl.SetFocus()
+            except:
+                asd = "Такое слово уже существует"
+                print(asd)
+                dlg = wx.MessageBox("Такое слово уже существует", "Ошибка", wx.OK | wx.ICON_STOP)
+                self.rusCtrl.SetValue("")
+                self.engCtrl.SetValue("")
+                self.engCtrl.SetFocus()
 
 
 
