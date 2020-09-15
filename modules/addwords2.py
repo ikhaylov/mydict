@@ -49,6 +49,9 @@ class AddWordsPanel2(wx.Panel):
             if self.engTextCtrl.GetValue() != "":
                 self.engWord = self.engTextCtrl.GetValue().lower()
                 self.rus_engStaticText.SetLabel("Введите слово на русском       ")
+                LikeStatus = "Вы ввели слово \"" + self.engWord + "\""
+                print(LikeStatus)
+                self.textLikeStatusBar.SetLabel(str(LikeStatus))
                 self.engTextCtrl.Hide()
                 self.rusTextCtrl.Show()
                 self.rusTextCtrl.SetFocus()
@@ -75,10 +78,28 @@ class AddWordsPanel2(wx.Panel):
 
     def onKeyUpRus(self, event):
         key = event.GetKeyCode()
+        eng_word = self.engWord.lower()
+        rus_word = self.rusTextCtrl.GetValue().lower()
         if key == wx.WXK_RETURN or key == wx.WXK_NUMPAD_ENTER:
             if self.rusTextCtrl.GetValue() != "":
                 self.rusWord = self.rusTextCtrl.GetValue().lower()
                 self.rus_engStaticText.SetLabel("Введите слово на английском")
+                LikeStatus = "Cлова \"" + self.engWord + " - " + self.rusWord\
+                                                + "\" успешно записаны в базу данных"
+
+                try:
+                    func_bd.add_new_word(eng_word, rus_word)
+                    self.textLikeStatusBar.SetLabel(str(LikeStatus))
+                    # self.engTextCtrl.SetValue("")
+                    # self.rusTextCtrl.SetValue("")
+                except:
+                    asd = "Такое слово уже существует"
+                    self.textLikeStatusBar.SetLabel("слово " + eng_word + " уже существует, введите другое слово")
+                    print(asd)
+                    dlg = wx.MessageBox("Такое слово уже существует", "Ошибка", wx.OK | wx.ICON_STOP)
+
+
+
                 self.rusTextCtrl.Hide()
                 self.engTextCtrl.Show()
                 self.engTextCtrl.SetFocus()
