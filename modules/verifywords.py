@@ -5,7 +5,22 @@ class VerifyWordsPanel(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
 
+        bsizer = wx.BoxSizer(wx.VERTICAL)
+        self.verifyText = wx.StaticText(self, wx.ID_ANY, "Введите перевод слова <destiny>")
+        bsizer.Add(self.verifyText, 0, flag=wx.ALL, border=10)
 
+        self.verifyCtrl = wx.TextCtrl(self, wx.ID_ANY, size=(200, -1))
+        bsizer.Add(self.verifyCtrl, 1, flag=wx.ALL, border=19)
+
+        self.logList = wx.ScrolledWindow(self, wx.ID_ANY, wx.VSCROLL)
+        self.logList.SetScrollRate(5, 5)
+        bsizer.Add(self.logList, 2, flag=wx.ALL | wx.EXPAND, border=12)
+
+
+
+        self.SetSizer(bsizer)
+        self.Hide()
+        self.Layout()
 
 
 
