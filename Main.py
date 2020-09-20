@@ -119,6 +119,7 @@ class MyFrame(wx.Frame):
         self.add_words_panel.Hide()
         self.verify_words_panel.Enable()
         self.verify_words_panel.Show()
+        self.verify_words_panel.SetFocus()
         self.Layout()
 
     def onAddWord2(self, event):
