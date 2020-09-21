@@ -19,6 +19,7 @@ class VerifyWordsPanel(wx.Panel):
         bsizer.Add(self.verifyText, 0, flag=wx.ALL, border=10)
 
         self.verifyCtrl = wx.TextCtrl(self, wx.ID_ANY, size=(200, 23))
+        self.verifyCtrl.SetMaxSize((200, 23))
         bsizer.Add(self.verifyCtrl, 1, flag=wx.ALL, border=19)
 
         self.logList = wx.TextCtrl(self, wx.ID_ANY, value="Приветствуем!\n", style=wx.TE_MULTILINE | wx.TE_READONLY\
