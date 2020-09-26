@@ -12,6 +12,9 @@ class MyFrame(wx.Frame):
         self.sb = self.CreateStatusBar()
         self.sb.SetStatusText("Статусная строка запущена")
 
+        # ico = wx.Icon('img/free bsd.ico', wx.BITMAP_TYPE_ICO)
+        # self.SetIcon(ico)
+
         self.add_words_panel = AddWordsPanel(self)
         self.add_words_panel2 = AddWordsPanel2(self)
         self.verify_words_panel = VerifyWordsPanel(self)
@@ -49,21 +52,25 @@ class MyFrame(wx.Frame):
 
         menubar = wx.MenuBar()
         mainmenu = wx.Menu()
-        menuitem = wx.Menu()
+        # menuitem = wx.Menu()
 
-        main_menu_item = mainmenu.Append(wx.ID_ANY, "Главная")
-        add_word_menu_item = mainmenu.Append(wx.ID_ANY, "Добавить слово")
+        main_menu_item = mainmenu.Append(wx.ID_ANY, "Главная\tCtrl+M")
+        # main_menu_item.SetBitmap(wx.Bitmap("img/Home.png"))
+        add_word_menu_item = mainmenu.Append(wx.ID_ANY, "Добавить слово\tCtrl+Q")
+        # add_word_menu_item.SetBitmap(wx.Bitmap("img/Add.png"))
         add_word_menu_item2 = mainmenu.Append(wx.ID_ANY, "Добавить слово 2(тест)")
-        verify_words_menu_item = mainmenu.Append(wx.ID_ANY, "Проверка слов")
+        # add_word_menu_item2.SetBitmap(wx.Bitmap("img/Create.png"))
+        verify_words_menu_item = mainmenu.Append(wx.ID_ANY, "Проверка слов\tCtrl+W")
+        # verify_words_menu_item.SetBitmap(wx.Bitmap("img/Apply.png"))
 
         self.Bind(wx.EVT_MENU, self.onMainMenu, main_menu_item)
         self.Bind(wx.EVT_MENU, self.onAddWord, add_word_menu_item)
         self.Bind(wx.EVT_MENU, self.onAddWord2, add_word_menu_item2)
         self.Bind(wx.EVT_MENU, self.onVerifyWords, verify_words_menu_item)
 
-        menuitem.Append(wx.ID_ABOUT, "О нас")
+        # menuitem.Append(wx.ID_ABOUT, "О нас")
         menubar.Append(mainmenu, "Menu")
-        menubar.Append(menuitem, "About Us")
+        # menubar.Append(menuitem, "About Us")
         self.SetMenuBar(menubar)
 
 

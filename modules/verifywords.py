@@ -1,21 +1,43 @@
 import wx
-from modules.func_bd import rand_word
+from modules.func_bd import rand_word, add_new_word
 
+# temp_while = 0
 
 class VerifyWordsPanel(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
 
-
-
         bsizer = wx.BoxSizer(wx.VERTICAL)
 
         self.rand = rand_word()
-        self.eng = self.rand[0]
-        self.rus = self.rand[1]
+        try:
+            self.eng = self.rand[0]
+            self.rus = self.rand[1]
+        except:
+            add_new_word("eng_word", "rus_word")
+            self.rand = rand_word()
+            self.eng = self.rand[0]
+            self.rus = self.rand[1]
+            i = 0
+            while self.eng == "eng_word" or i >= 10:
+                # global temp_while
+                # temp_while += 1
+                self.rand = rand_word()
+                self.eng = self.rand[0]
+                self.rus = self.rand[1]
+                i += 1
+                if i == 10:
+                    dlg = wx.MessageBox("Your dictionary is empty - Ваш словарь пуст\n "
+                                        "Добавьте новое слово в режиме 'Добавить слово'", "Ошибка",
+                                        wx.OK | wx.ICON_STOP)
+                    break
+
 
         self.verifyText = wx.StaticText(self, wx.ID_ANY, "")
-        self.verifyText.SetLabel("Введите перевод слова: " + self.eng)
+        if self.eng == "eng_word":
+            self.verifyText.SetLabel("Your dictionary is empty - Ваш словарь пуст")
+        else:
+            self.verifyText.SetLabel("Введите перевод слова: " + self.eng)
         bsizer.Add(self.verifyText, 0, flag=wx.ALL, border=10)
 
         self.verifyCtrl = wx.TextCtrl(self, wx.ID_ANY, size=(200, 23))
@@ -42,21 +64,32 @@ class VerifyWordsPanel(wx.Panel):
         if key == wx.WXK_RETURN or key == wx.WXK_NUMPAD_ENTER:
             loglist = self.logList.GetValue()
             word = self.verifyCtrl.GetValue()
-            # ran = rand_word()
-            # eng = ran[0]
-            # rus = ran[1]
-            if word == self.rus:
+
+            if self.eng == "eng_word":
+                self.logList.SetValue("Your dictionary is empty - Ваш словарь пуст")
+            elif word == self.rus:
                 self.logList.SetValue("Вы ввели правильное слово, Молодец\n"+loglist)
                 self.verifyCtrl.SetValue("")
             else:
                 self.logList.SetValue("Не правильно, это было слово " + self.rus + "\n"+loglist)
                 self.verifyCtrl.SetValue("")
 
-            # self.logList.SetValue(loglist + "еще кое-что   " + word + "\n")
-
             self.rand = rand_word()
             self.eng = self.rand[0]
             self.rus = self.rand[1]
+            i=0
+            while self.eng == "eng_word" or i >= 10:
+                # global temp_while
+                # temp_while += 1
+                self.rand = rand_word()
+                self.eng = self.rand[0]
+                print(self.eng)
+                self.rus = self.rand[1]
+                i += 1
+                if i == 10:
+                    dlg = wx.MessageBox("Your dictionary is empty - Ваш словарь пуст", "Ошибка", wx.OK | wx.ICON_STOP)
+                    break
+            # print(temp_while)
             self.verifyText.SetLabel("Введите перевод слова: " + self.eng)
 
 
