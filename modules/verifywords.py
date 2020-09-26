@@ -13,6 +13,12 @@ class VerifyWordsPanel(wx.Panel):
         try:
             self.eng = self.rand[0]
             self.rus = self.rand[1]
+            if self.eng == "eng_word":
+                self.rand = rand_word()
+                self.eng = self.rand[0]
+                self.rus = self.rand[1]
+            else:
+                pass
         except:
             add_new_word("eng_word", "rus_word")
             self.rand = rand_word()
@@ -68,29 +74,31 @@ class VerifyWordsPanel(wx.Panel):
             if self.eng == "eng_word":
                 self.logList.SetValue("Your dictionary is empty - Ваш словарь пуст")
             elif word == self.rus:
-                self.logList.SetValue("Вы ввели правильное слово, Молодец\n"+loglist)
+                self.logList.SetValue("Молодец !!!\n"+loglist)
                 self.verifyCtrl.SetValue("")
-            else:
-                self.logList.SetValue("Не правильно, это было слово " + self.rus + "\n"+loglist)
-                self.verifyCtrl.SetValue("")
-
-            self.rand = rand_word()
-            self.eng = self.rand[0]
-            self.rus = self.rand[1]
-            i=0
-            while self.eng == "eng_word" or i >= 10:
-                # global temp_while
-                # temp_while += 1
                 self.rand = rand_word()
                 self.eng = self.rand[0]
-                print(self.eng)
                 self.rus = self.rand[1]
-                i += 1
-                if i == 10:
-                    dlg = wx.MessageBox("Your dictionary is empty - Ваш словарь пуст", "Ошибка", wx.OK | wx.ICON_STOP)
-                    break
-            # print(temp_while)
-            self.verifyText.SetLabel("Введите перевод слова: " + self.eng)
+                i = 0
+                while self.eng == "eng_word" or i >= 10:
+                    # global temp_while
+                    # temp_while += 1
+                    self.rand = rand_word()
+                    self.eng = self.rand[0]
+                    print(self.eng)
+                    self.rus = self.rand[1]
+                    i += 1
+                    if i == 10:
+                        dlg = wx.MessageBox("Your dictionary is empty - Ваш словарь пуст", "Ошибка",
+                                            wx.OK | wx.ICON_STOP)
+                        break
+                # print(temp_while)
+                self.verifyText.SetLabel("Введите перевод слова: " + self.eng)
+            else:
+                self.logList.SetValue("Это было слово - " + self.rus + "\n,  а вы ввели - " + word + "\n"+loglist)
+                self.verifyCtrl.SetValue("")
+
+
 
 
 
