@@ -50,7 +50,7 @@ class AddWordsPanel2(wx.Panel):
                 self.engWord = self.engTextCtrl.GetValue().lower()
                 self.rus_engStaticText.SetLabel("Введите слово на русском       ")
                 LikeStatus = "Вы ввели слово \"" + self.engWord + "\""
-                print(LikeStatus)
+                # print(LikeStatus)
                 self.textLikeStatusBar.SetLabel(str(LikeStatus))
                 self.engTextCtrl.Hide()
                 self.rusTextCtrl.Show()
@@ -93,9 +93,9 @@ class AddWordsPanel2(wx.Panel):
                     # self.engTextCtrl.SetValue("")
                     # self.rusTextCtrl.SetValue("")
                 except:
-                    asd = "Такое слово уже существует"
+                    # asd = "Такое слово уже существует"
                     self.textLikeStatusBar.SetLabel("слово " + eng_word + " уже существует, введите другое слово")
-                    print(asd)
+                    # print(asd)
                     dlg = wx.MessageBox("Такое слово уже существует", "Ошибка", wx.OK | wx.ICON_STOP)
 
 
@@ -103,7 +103,7 @@ class AddWordsPanel2(wx.Panel):
                 self.rusTextCtrl.Hide()
                 self.engTextCtrl.Show()
                 self.engTextCtrl.SetFocus()
-                print(self.engWord, self.rusWord)
+                # print(self.engWord, self.rusWord)
                 self.engTextCtrl.SetValue("")
                 self.rusTextCtrl.SetValue("")
                 #-------------------

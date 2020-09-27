@@ -52,6 +52,7 @@ class VerifyWordsPanel(wx.Panel):
 
         self.logList = wx.TextCtrl(self, wx.ID_ANY, value="Приветствуем!\n", style=wx.TE_MULTILINE | wx.TE_READONLY\
                                    | wx.TE_RICH | wx.VSCROLL)
+
         bsizer.Add(self.logList, 2, flag=wx.ALL | wx.EXPAND, border=12)
 
 
@@ -75,6 +76,7 @@ class VerifyWordsPanel(wx.Panel):
                 self.logList.SetValue("Your dictionary is empty - Ваш словарь пуст")
             elif word == self.rus:
                 self.logList.SetValue("Молодец !!!\n"+loglist)
+                self.logList.SetForegroundColour(wx.GREEN)
                 self.verifyCtrl.SetValue("")
                 self.rand = rand_word()
                 self.eng = self.rand[0]
@@ -96,6 +98,7 @@ class VerifyWordsPanel(wx.Panel):
                 self.verifyText.SetLabel("Введите перевод слова: " + self.eng)
             else:
                 self.logList.SetValue("Это было слово - " + self.rus + "\n,  а вы ввели - " + word + "\n"+loglist)
+                self.logList.SetForegroundColour(wx.RED)
                 self.verifyCtrl.SetValue("")
 
 
